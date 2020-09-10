@@ -14,8 +14,10 @@ export async function getInitialState(): Promise<{
 }> {
   // 如果是登录页面，不执行
   if (history.location.pathname !== '/user/login') {
+    
     try {
       const currentUser = await queryCurrent();
+      console.log('currentUser:',currentUser)
       return {
         currentUser,
         settings: defaultSettings,
@@ -40,7 +42,9 @@ export const layout = ({
     footerRender: () => <Footer />,
     onPageChange: () => {
       // 如果没有登录，重定向到 login
-      if (!initialState?.currentUser?.userid && history.location.pathname !== '/user/login') {
+      console.log('initialState.currentUser.token:',initialState?.currentUser?.token)
+      if (!initialState?.currentUser?.token && history.location.pathname !== '/user/login') {
+        console.log('1111')
         history.push('/user/login');
       }
     },

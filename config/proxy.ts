@@ -8,9 +8,9 @@
 export default {
   dev: {
     '/api/': {
-      target: 'https://preview.pro.ant.design',
+      target: 'http://local-invoice.ship56.net',
       changeOrigin: true,
-      pathRewrite: { '^': '' },
+      pathRewrite: { '^/api/': '' }
     },
   },
   test: {

@@ -1,7 +1,7 @@
 import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 import { Alert, Checkbox, message } from 'antd';
 import React, { useState } from 'react';
-import { Link, SelectLang, useModel } from 'umi';
+import {history, Link, SelectLang, useModel } from 'umi';
 import { getPageQuery } from '@/utils/utils';
 import logo from '@/assets/logo.svg';
 import { LoginParamsType, fakeAccountLogin } from '@/services/login';
@@ -58,8 +58,8 @@ const Login: React.FC<{}> = () => {
     setSubmitting(true);
     try {
       // 登录
-      const msg = await fakeAccountLogin({ ...values, type });
-      if (msg.status === 'ok') {
+      const msg = await fakeAccountLogin({ ...values });
+      if (msg.code === 0) {
         message.success('登录成功！');
         replaceGoto();
         setTimeout(() => {
